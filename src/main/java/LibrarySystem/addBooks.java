@@ -7,6 +7,7 @@
 package LibrarySystem;
 
 import static databaseCredentials.database.getConnection;
+import java.sql.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,8 +19,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 import org.json.simple.JSONValue;
-import java.sql.*;
 
 /**
  *
@@ -29,11 +30,10 @@ import java.sql.*;
 public class addBooks {
    @GET
     @Produces("application/json")
-    public String doGet() {
+    public Response doGet() {
 
-        String result = resultMethod("SELECT * FROM login");
-        return result;
-
+        return Response.ok(resultMethod("SELECT * FROM login")).build();
+        
     }
     @GET
     @Path("{id}")
