@@ -23,14 +23,23 @@ public class database {
      * @throws java.sql.SQLException
      */
     public static Connection getConnection() throws SQLException {
-       String hostname = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+        System.err.print("Driver not found"+ex.getMessage());    
+        }
+        String hostname = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
         String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
         String username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
         String password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
 
         String jdbc = "jdbc:mysql://" + hostname + ":" + port + "/librarymgmtsys";
+        String query = "SELECT username FROM login";
+     
         return DriverManager.getConnection(jdbc, username, password);
-
+        
+      
     }
+    
     
 }

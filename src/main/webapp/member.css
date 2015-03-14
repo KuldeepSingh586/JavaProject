@@ -1,0 +1,65 @@
+body{
+background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%);
+ height:100%;
+}
+
+ul{
+list-style-type:none;
+text-align:center;
+border:2px solid black;
+background: linear-gradient(to right, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 50%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);padding-top:1em;
+padding-bottom:1em;
+}
+li{
+margin-left:1em;
+display:inline;
+font-size:150%;
+}
+label{
+margin-left:3em;
+
+}
+input{
+margin-top:4em;
+
+}
+.deadLine{
+border:2px solid blue;
+
+}
+.amount{
+margin-left:4.6em;
+border:2px solid blue;
+}
+.id{
+margin-left:4.8em;
+border:2px solid blue;
+}
+.address{
+margin-left:4.3em;
+border:2px solid blue;
+}
+.name{
+margin-left:5em;
+border:2px solid blue;
+}
+.issueDate{
+margin-left:2em;
+border:2px solid blue;
+}
+
+#content {
+float: right ;
+  width: 50% ;
+
+}
+#navbar {
+
+ width: 45% ; 
+}
+.add{
+margin-left:15em;
+background: -webkit-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%); height:3em;
+height:3em;
+width:5em;
+}
