@@ -44,17 +44,17 @@ public class addBooks {
         JsonArray json = null;
         try {
             JsonArrayBuilder array = Json.createArrayBuilder();
-            Connection conn = getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            for (int i = 0; i < params.length; i++)
-                pstmt.setString(i+1, params[i]);
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                array.add(Json.createObjectBuilder()
-                    .add("username", rs.getInt("username"))
-                    .add("password", rs.getString("password")));         
+            try (Connection conn = getConnection()) {
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                for (int i = 0; i < params.length; i++)
+                    pstmt.setString(i+1, params[i]);
+                ResultSet rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    array.add(Json.createObjectBuilder()
+                            .add("username", rs.getString("username"))
+                            .add("password", rs.getString("password")));         
+                }
             }
-            conn.close();
             json = array.build();
         } catch (SQLException ex) {
            
