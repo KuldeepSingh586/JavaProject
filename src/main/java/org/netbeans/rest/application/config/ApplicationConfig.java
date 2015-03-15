@@ -32,7 +32,6 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(LibrarySystem.Login.class);
         resources.add(LibrarySystem.LoginCheck.class);
-        resources.add(LibrarySystem.addBooks.class);
     }
     
 }
