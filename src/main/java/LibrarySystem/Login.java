@@ -5,6 +5,11 @@
  */
 package LibrarySystem;
 
+import static databaseCredentials.database.getConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -19,10 +24,20 @@ public class Login {
     @POST
     @Path("/add")
     public Response addUser(@FormParam("username") String username,
-            @FormParam("password") int password) {
-
+            @FormParam("password") String password) throws SQLException {
+        String sql="Select * from login";
+        
+        Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery();
+              String name=rs.getString("username");
+              String passwordDb=rs.getString("password");
+              if(name.equals(username)&&passwordDb.equals(password)) {
+                  Response.status(200);
+              }
         return Response.status(200)
                 .entity("addUser is called, name : " + username + ", age : " + password)
                 .build();
+       
     }
 }
