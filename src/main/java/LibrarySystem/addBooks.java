@@ -23,13 +23,13 @@ import javax.ws.rs.core.Response;
  *
  * @author Kuldeep
  */
-@Path("/book")
+@Path("/login")
 public class addBooks {
    @GET
     @Produces("application/json")
     public Response doGet() {
 
-        return Response.ok(getResults("SELECT * FROM books")).build();
+        return Response.ok(getResults("SELECT * FROM login")).build();
         
     }
       public static JsonArray getResults(String sql, String... params) {

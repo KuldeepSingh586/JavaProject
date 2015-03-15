@@ -31,44 +31,44 @@ public class LoginCheck {
     @Produces("application/json")
     public Response doGet() {
 
-        return Response.ok(getName("SELECT * FROM login")).build();
+        return Response.ok(getResults("SELECT * FROM login")).build();
 
     }
 
-//    public static JsonArray getResults(String sql, String... params) {
-//        JsonArray json = null;
-//        try {
-//            JsonArrayBuilder array = Json.createArrayBuilder();
-//            try (Connection conn = getConnection()) {
-//                PreparedStatement pstmt = conn.prepareStatement(sql);
-//                for (int i = 0; i < params.length; i++) {
-//                    pstmt.setString(i + 1, params[i]);
-//                }
-//                ResultSet rs = pstmt.executeQuery();
-//                while (rs.next()) {
-//                    array.add(Json.createObjectBuilder()
-//                            .add("username", rs.getString("username"))
-//                            .add("password", rs.getString("password")));
-//                }
-//            }
-//            json = array.build();
-//        } catch (SQLException ex) {
-//
-//        }
-//        return json;
-//    }
-
-    public static String getName(String sql, String... params) {
-        String name = null;    
-        try (Connection conn = getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery();
-              name=rs.getString("username");
-             
+    public static JsonArray getResults(String sql, String... params) {
+        JsonArray json = null;
+        try {
+            JsonArrayBuilder array = Json.createArrayBuilder();
+            try (Connection conn = getConnection()) {
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                for (int i = 0; i < params.length; i++) {
+                    pstmt.setString(i + 1, params[i]);
+                }
+                ResultSet rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    array.add(Json.createObjectBuilder()
+                            .add("username", rs.getString("username"))
+                            .add("password", rs.getString("password")));
+                }
+            }
+            json = array.build();
         } catch (SQLException ex) {
 
         }
-        return name;
+        return json;
     }
-    
+
+//    public static String getName(String sql, String... params) {
+//        String name = null;    
+//        try (Connection conn = getConnection()) {
+//            PreparedStatement pstmt = conn.prepareStatement(sql);
+//             ResultSet rs = pstmt.executeQuery();
+//              name=rs.getString("username");
+//             
+//        } catch (SQLException ex) {
+//
+//        }
+//        return name;
+//    }
+//    
 }   
