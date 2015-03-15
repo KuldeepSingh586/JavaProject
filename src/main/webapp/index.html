@@ -3,42 +3,33 @@
     <head>
         <meta charset="utf-8">
         <title>Library Management System</title>
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <link rel="stylesheet" href="/resources/demos/style.css">
+       
         <link rel="stylesheet" href="main.css">
-        <script>
-            $(function() {
-                $("input[type=submit], a, button")
-                        .button()
-                        .click(function(event) {
-                            event.preventDefault();
-                        });
-            });
-        </script>
+
 
     </head>
     <body>
-        <form name="main" method="post" action="rs/user/add">
-                <aside>
-                    <img src="admin-logo.gif">
-                </aside>
 
-                <center>
-                    <img src="Library management.png">
-                </center>
-                <section>
-                    <label for="userName">User Name</label>
-                    <input type="text" name="userName"/><br><br>
+        <aside>
+            <img src="admin-logo.gif">
+        </aside>
 
-                    <label for="password">Password &nbsp;&nbsp;</label>
-                    <input type="text" name="password"/><br><br>
+    <center>
+        <img src="Library management.png">
+    </center>
+    <section>
+        <form name="main" method="post" action="rest/user/add">
+            <label for="userName">User Name</label>
+            <input type="text" name="username"/><br><br>
 
-                    <input type="submit" value="Login" id="loginButton"/>
-                </section>
+            <label for="password">Password &nbsp;&nbsp;</label>
+            <input type="text" name="password"/><br><br>
+
+            <input type="submit" value="Login" id="loginButton"/>
         </form>
+    </section>
+
     <footer>&copy;Kuldeep Singh</footer>
-    
-    </body>
-    </html>
+
+</body>
+</html>
