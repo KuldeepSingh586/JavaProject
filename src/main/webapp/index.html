@@ -6,6 +6,20 @@
        
         <link rel="stylesheet" href="main.css">
 
+        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+               $('#loginButton').click(function() {
+                   $.get('rs/user/add', 
+                   {username: $('#username').val(),
+                       password: $('#password').val()},
+                   function(data) {
+                       // Some sort of Redirect
+                       alert("OKAY");
+                   })
+               }) 
+            });
+        </script>
 
     </head>
     <body>
@@ -18,15 +32,17 @@
         <img src="Library management.png" alt="img">
     </center>
     <section>
-        <form name="main" method="post" action="rs/user/add">
+        <!-- form name="main" method="post" action="rs/user/add" -->
+        <div id="loginForm">
             <label for="username">User Name</label>
-            <input type="text" name="username"/><br><br>
+            <input type="text" id="username" name="username"/><br><br>
 
             <label for="password">Password &nbsp;&nbsp;</label>
-            <input type="text" name="password"/><br><br>
+            <input type="text" name="password" id="password"/><br><br>
 
             <input type="submit" value="Login" id="loginButton"/>
-        </form>
+        </div>
+        <!-- /form -->
     </section>
 
     <footer>&copy;Kuldeep Singh</footer>

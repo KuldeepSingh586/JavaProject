@@ -14,6 +14,7 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 /**
  *
@@ -21,23 +22,24 @@ import javax.ws.rs.core.Response;
  */
 @Path("/user")
 public class Login {
+
     @POST
     @Path("/add")
     public Response addUser(@FormParam("username") String username,
             @FormParam("password") String password) throws SQLException {
-        String sql="Select * from login";
-        
+        String sql = "Select * from login";
+
         Connection conn = getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery();
-              String name=rs.getString("username");
-              String passwordDb=rs.getString("password");
-              if(name.equals(username)&&passwordDb.equals(password)) {
-                  Response.status(200);
-              }
-        return Response.status(200)
-                .entity("addUser is called, name : " + username + ", age : " + password)
-                .build();
-       
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        String name = rs.getString("username");
+        String passwordDb = rs.getString("password");
+        if (name.equals(username) && passwordDb.equals(password)) {
+    
+            return Response.ok().build();
+        } else {
+            return Response.status(500).build();
+        }
+
     }
 }
