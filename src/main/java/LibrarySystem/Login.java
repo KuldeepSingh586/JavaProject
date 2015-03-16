@@ -27,11 +27,14 @@ public class Login {
     @Path("/add")
     public Response addUser(@FormParam("username") String username,
             @FormParam("password") String password) throws SQLException {
-        String sql = "Select * from login";
+        String sql = "Select * from login WHERE username = ? AND password = ?";
 
         Connection conn = getConnection();
         PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, username);
+        pstmt.setString(2, password);
         ResultSet rs = pstmt.executeQuery();
+        rs.next();
         String name = rs.getString("username");
         String passwordDb = rs.getString("password");
         if (name.equals(username) && passwordDb.equals(password)) {
