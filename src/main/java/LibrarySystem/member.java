@@ -100,10 +100,10 @@ public class member {
         System.out.println(map);
         String getName = map.get("name");
         String getAddess = map.get("address");
-        String getDateIssue = map.get("date_of_issue");
-        String getDateDeadline = map.get("date_of_deadline");
+        String getDateIssue = map.get("issueDate");
+        String getDateDeadline = map.get("deadlineDate");
         String getAmount = map.get("amount");
-        doUpdate("INSERT INTO member (name, address, date_of_issue, date_of_deadline, amount) VALUES "
+        doUpdate("INSERT INTO member (name, address, issueDate, deadlineDate, amount) VALUES "
                 + "(?, ?, ? ,? , ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
 
     }
@@ -143,10 +143,10 @@ public class member {
         System.out.println(map);
         String getName = map.get("name");
         String getAddress = map.get("address");
-        String getDateIssue = map.get("date_of_issue");
-        String getDateDeadline = map.get("date_of_deadline");
+        String getDateIssue = map.get("issueDate");
+        String getDateDeadline = map.get("deadlineDate");
         String getAmount = map.get("amount");
-        doUpdate("update product set member_id = ?, name = ?, address = ?, date_of_issue = ?, date_of_deadline = ?, amount=? where member_id = ?", id, getName, getAddress, getDateIssue, getDateDeadline, getAmount, id);
+        doUpdate("update product set member_id = ?, name = ?, address = ?, issueDate = ?, deadlineDate = ?, amount=? where member_id = ?", id, getName, getAddress, getDateIssue, getDateDeadline, getAmount, id);
     }
 
     /**
