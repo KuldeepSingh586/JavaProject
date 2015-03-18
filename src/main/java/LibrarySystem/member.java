@@ -16,10 +16,12 @@ import java.util.Map;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.json.stream.JsonParser;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -103,6 +105,46 @@ public class member {
         doUpdate("INSERT INTO member (name,address,date_of_issue, date_of_deadline, amount) VALUES (?, ?, ?,?, ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
 
     }
+     /**
+     * doPut Method takes two parameters of type string Used to Insert the
+     * values into Product table. get the name, description, quantity by using
+     * HashMap
+     *
+     * @param id
+     * @param strValue
+     */
+    @PUT
+    @Path("{id}")
+    @Consumes("application/json")
+    public void doPut(@PathParam("id") String id, String strValue) {
+        JsonParser jsonParserObj = Json.createParser(new StringReader(strValue));
+        Map<String, String> map = new HashMap<>();
+        String name = "", value;
+        while (jsonParserObj.hasNext()) {
+            JsonParser.Event event = jsonParserObj.next();
+            switch (event) {
+                case KEY_NAME:
+                    name = jsonParserObj.getString();
+                    break;
+                case VALUE_STRING:
+                    value = jsonParserObj.getString();
+                    map.put(name, value);
+                    break;
+                case VALUE_NUMBER:
+                    value = Integer.toString(jsonParserObj.getInt());
+                    map.put(name, value);
+                    break;
+            }
+
+        }
+        System.out.println(map);
+        String getName = map.get("name");
+        String getAddress = map.get("address");
+        String getDateIssue = map.get("date_of_issue");
+        String getDateDeadline = map.get("date_of_deadline");
+        String getAmount = map.get("amount");
+        doUpdate("update product set member_id = ?, name = ?, address = ?, date_of_issue = ?, date_of_deadline = ?, amount=? where member_id = ?", id, getName, getAddress, getDateIssue,getDateDeadline, getAmount, id);
+    }
 
     /**
      * resultMethod accepts two arguments It executes the Query get ProductID,
@@ -125,13 +167,13 @@ public class member {
             }
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                JsonObject json = Json.createObjectBuilder()
+                JsonObjectBuilder json = Json.createObjectBuilder()
                         .add("member id", rs.getInt("member_id"))
                         .add("name", rs.getString("name"))
                         .add("address", rs.getString("address"))
                         .add("date of Issue", rs.getInt("date_of_Issue"))
                         .add("date of DeadLine", rs.getInt("date_of_deadline"))
-                        .add("amount", rs.getInt("amount")).build();
+                        .add("amount", rs.getInt("amount"));
 
                 jsonArrayObj.add(json);
             }
