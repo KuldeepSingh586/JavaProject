@@ -108,7 +108,7 @@ public class member {
        valueRow+=1;
        
         }
-        System.out.println("row inserted");
+        System.out.println("row inserted"+valueRow);
         
             
     }
