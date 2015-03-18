@@ -171,8 +171,8 @@ public class member {
                         .add("member id", rs.getInt("member_id"))
                         .add("name", rs.getString("name"))
                         .add("address", rs.getString("address"))
-                        .add("date of Issue", rs.getInt("date_of_Issue"))
-                        .add("date of DeadLine", rs.getInt("date_of_deadline"))
+                        .add("date of Issue", rs.getString("date_of_Issue"))
+                        .add("date of DeadLine", rs.getString("date_of_deadline"))
                         .add("amount", rs.getInt("amount"));
 
                 jsonArrayObj.add(json);
