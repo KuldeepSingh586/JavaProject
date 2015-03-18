@@ -76,7 +76,7 @@ public class member {
     @POST
     @Consumes("application/json")
     public void doPost(String strValue) {
-        int valueRow=0;
+        int valueRow = 0;
         JsonParser jsonParserObj = Json.createParser(new StringReader(strValue));
         Map<String, String> map = new HashMap<>();
         String name = "", value;
@@ -103,14 +103,9 @@ public class member {
         String getDateIssue = map.get("date_of_issue");
         String getDateDeadline = map.get("date_of_deadline");
         String getAmount = map.get("amount");
-        if(valueRow==0) {
-        valueRow=doUpdate("INSERT INTO member (name, address, date_of_issue, date_of_deadline, amount) VALUES (?, ?, ?,?, ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
-       valueRow+=1;
-       
-        }
-        System.out.println("row inserted"+valueRow);
-        
-            
+        doUpdate("INSERT INTO member (name, address, date_of_issue, date_of_deadline, amount) VALUES "
+                + "(?, ?, ? ,? , ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
+
     }
 
     /**
