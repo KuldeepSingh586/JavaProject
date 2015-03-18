@@ -78,11 +78,11 @@ public class member {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 JsonObject json = Json.createObjectBuilder()
-                        .add("member Id", rs.getInt("member_id"))
+                        .add("member_id", rs.getInt("member_id"))
                         .add("name", rs.getString("name"))
                         .add("address", rs.getString("address"))
-                        .add("Date of Issue", rs.getInt("quantity"))
-                        .add("Date of DeadLine", rs.getInt("date_of_deadline")).build();
+                        .add("date_of_Issue", rs.getInt("date_of_Issue"))
+                        .add("Date_of_DeadLine", rs.getInt("date_of_deadline")).build();
 
                 jsonArrayObj.add(json);
             }
