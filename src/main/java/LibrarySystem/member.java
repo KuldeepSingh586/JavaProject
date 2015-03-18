@@ -3,18 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package LibrarySystem;
 
 import static databaseCredentials.database.getConnection;
+import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.stream.JsonParser;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -25,6 +30,7 @@ import javax.ws.rs.Produces;
  */
 @Path("member")
 public class member {
+
     /**
      * doGet method select all attribute from product table. call resultMethod()
      * pass all product table data in resultMethod(). store all table data in
@@ -40,8 +46,8 @@ public class member {
         return result;
 
     }
-    
-     /**
+
+    /**
      * doGet Method takes one parameter of type of string pass all product table
      * data in resultMethod(). store all table data in String result variable
      *
@@ -56,7 +62,49 @@ public class member {
         return result;
 
     }
- /**
+
+    /**
+     * doPost Method takes one parameter of type String. Used to Insert the
+     * values into Product table. get the name, description, quantity by using
+     * HashMap call doUpdate Method
+     *
+     * @param strValue
+     */
+    @POST
+    @Consumes("application/json")
+    public void doPost(String strValue) {
+        JsonParser jsonParserObj = Json.createParser(new StringReader(strValue));
+        Map<String, String> map = new HashMap<>();
+        String name = "", value;
+        while (jsonParserObj.hasNext()) {
+            JsonParser.Event event = jsonParserObj.next();
+            switch (event) {
+                case KEY_NAME:
+                    name = jsonParserObj.getString();
+                    break;
+                case VALUE_STRING:
+                    value = jsonParserObj.getString();
+                    map.put(name, value);
+                    break;
+                case VALUE_NUMBER:
+                    value = Integer.toString(jsonParserObj.getInt());
+                    map.put(name, value);
+                    break;
+            }
+
+        }
+        System.out.println(map);
+        String getName = map.get("name");
+        String getAddess = map.get("address");
+        String getDateIssue = map.get("date_of_issue");
+        String getDateDeadline = map.get("date_of_deadline");
+        String getAmount = map.get("amount");
+
+        doUpdate("INSERT INTO member (name,address,date_of_issue, date_of_deadline, amount) VALUES (?, ?, ?,?, ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
+
+    }
+
+    /**
      * resultMethod accepts two arguments It executes the Query get ProductID,
      * name, description, quantity. Used JSON object model and provides methods
      * to add name/value pairs to the object model and to return the resulting
@@ -82,7 +130,8 @@ public class member {
                         .add("name", rs.getString("name"))
                         .add("address", rs.getString("address"))
                         .add("date of Issue", rs.getInt("date_of_Issue"))
-                        .add("date of DeadLine", rs.getInt("date_of_deadline")).build();
+                        .add("date of DeadLine", rs.getInt("date_of_deadline"))
+                        .add("amount", rs.getInt("amount")).build();
 
                 jsonArrayObj.add(json);
             }
@@ -94,4 +143,25 @@ public class member {
         return strJson;
     }
 
+    /**
+     * doUpdate Method accepts two arguments Update the entries in the table
+     * 'product'
+     *
+     * @param query
+     * @param params
+     * @return numChanges
+     */
+    private int doUpdate(String query, String... params) {
+        int numChanges = 0;
+        try (Connection conn = getConnection()) {
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            for (int i = 1; i <= params.length; i++) {
+                pstmt.setString(i, params[i - 1]);
+            }
+            numChanges = pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("SQL EXception in doUpdate Method" + ex.getMessage());
+        }
+        return numChanges;
+    }
 }
