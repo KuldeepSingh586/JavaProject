@@ -19,6 +19,7 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.stream.JsonParser;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -105,7 +106,8 @@ public class member {
         doUpdate("INSERT INTO member (name,address,date_of_issue, date_of_deadline, amount) VALUES (?, ?, ?,?, ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
 
     }
-     /**
+
+    /**
      * doPut Method takes two parameters of type string Used to Insert the
      * values into Product table. get the name, description, quantity by using
      * HashMap
@@ -143,7 +145,22 @@ public class member {
         String getDateIssue = map.get("date_of_issue");
         String getDateDeadline = map.get("date_of_deadline");
         String getAmount = map.get("amount");
-        doUpdate("update product set member_id = ?, name = ?, address = ?, date_of_issue = ?, date_of_deadline = ?, amount=? where member_id = ?", id, getName, getAddress, getDateIssue,getDateDeadline, getAmount, id);
+        doUpdate("update product set member_id = ?, name = ?, address = ?, date_of_issue = ?, date_of_deadline = ?, amount=? where member_id = ?", id, getName, getAddress, getDateIssue, getDateDeadline, getAmount, id);
+    }
+
+    /**
+     * doDelete takes one parameter of type String. Used to delete the values
+     * into Product table. get the name, description, quantity by using Simple
+     * Json Library
+     *
+     * @param id
+     * @param strValue
+     */
+    @DELETE
+    @Path("{id}")
+    @Consumes("application/json")
+    public void doDelete(@PathParam("id") String id, String strValue) {
+        doUpdate("DELETE FROM member WHERE `member_id`=?", id);
     }
 
     /**
