@@ -10,6 +10,7 @@ package LibrarySystem;
  *
  * @author Kuldeep
  */
-public class addbooks {
+public class book {
+    
     
 }
