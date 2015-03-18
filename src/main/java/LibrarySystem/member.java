@@ -104,7 +104,7 @@ public class member {
         String getDateDeadline = map.get("date_of_deadline");
         String getAmount = map.get("amount");
         doUpdate("INSERT INTO member (name, address, date_of_deadline, amount) VALUES "
-                + "(?, ?, ? ,? , ?)", getName, getAddess, getDateDeadline, getAmount);
+                + "(?, ?, ? ,? )", getName, getAddess, getDateDeadline, getAmount);
 
     }
 
