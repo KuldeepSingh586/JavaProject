@@ -103,6 +103,7 @@ public class member {
         String getDateIssue = map.get("issueDate");
         String getDateDeadline = map.get("deadlineDate");
         String getAmount = map.get("amount");
+        System.out.print(getName + getAddess+ getDateIssue+ getDateDeadline);
         doUpdate("INSERT INTO member (name, address, issueDate, deadlineDate, amount) VALUES "
                 + "(?, ?, ? ,? , ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
         doUpdate("INSERT INTO member (name, address, issueDate, deadlineDate, amount) VALUES "
