@@ -106,8 +106,7 @@ public class member {
         System.out.print(getName + getAddess+ getDateIssue+ getDateDeadline);
         doUpdate("INSERT INTO member (name, address, issueDate, deadlineDate, amount) VALUES "
                 + "(?, ?, ? ,? , ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
-        doUpdate("INSERT INTO member (name, address, issueDate, deadlineDate, amount) VALUES "
-                + "('kuldeep', '64 finch drive', '15/jan/2015' ,'18/Jan/2016' , 300)");
+     
 
     }
 
