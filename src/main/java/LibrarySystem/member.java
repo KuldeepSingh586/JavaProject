@@ -105,7 +105,7 @@ public class member {
         String getAmount = map.get("amount");
         System.out.print(getName + getAddress+ getDateIssue+ getDateDeadline);
        // doUpdate("INSERT INTO members (name, address, issuedate, deadlinedate, amount) VALUES (?, ?, ? ,? , ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
-        doUpdate("INSERT INTO  `members` (  `id` ,  `name` ,  `address` ,  `issuedate` ,  `deadlinedate` ,  `amount` )  VALUES ( ?,  ?,  ?,  ?,  ?, ? )",getName,getAddress,getDateIssue,getDateDeadline,getAmount);
+        doUpdate("INSERT INTO  `members` (  `name` ,  `address` ,  `issuedate` ,  `deadlinedate` ,  `amount` )  VALUES (   ?,  ?,  ?,  ?, ? )",getName,getAddress,getDateIssue,getDateDeadline,getAmount);
 
     }
 
