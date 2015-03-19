@@ -64,9 +64,9 @@ public class book {
                         .add("name", rs.getString("name"))
                         .add("bookcode", rs.getString("bookcode"))
                         .add("author", rs.getString("author"))
-                        .add("arrivaldate", rs.getInt("arrivaldate"))
+                        .add("arrivaldate", rs.getString("arrivaldate"))
                          .add("quantity", rs.getInt("quantity"))
-                        .add("location_rack", rs.getInt("location_rack")).build();
+                        .add("location_rack", rs.getString("location_rack")).build();
 
                 jsonArrayObj.add(json);
             }
