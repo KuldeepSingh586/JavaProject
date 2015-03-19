@@ -34,8 +34,8 @@ import javax.ws.rs.Produces;
 public class book {
 
     /**
-     * doGet method select all attribute from product table. call resultMethod()
-     * pass all product table data in resultMethod(). store all table data in
+     * doGet method select all attribute from book table. call resultMethod()
+     * pass all book table data in resultMethod(). store all table data in
      * String result variable
      *
      * @return result
@@ -47,7 +47,21 @@ public class book {
 
         return books;
     }
+     /**
+     * doGet Method takes one parameter of type of string pass all book table
+     * data in resultMethod(). store all table data in String result variable
+     *
+     * @param id
+     * @return result
+     */
+    @GET
+    @Path("{id}")
+    @Produces("application/json")
+    public String doGet(@PathParam("id") String id) {
+        String result = resultMethod("SELECT * FROM book where id=?", id);
+        return result;
 
+    }
     /**
      * doPost Method takes one parameter of type String. Used to Insert the
      * values into Product table. get the name, description, quantity by using
@@ -188,7 +202,7 @@ public class book {
 
     /**
      * doUpdate Method accepts two arguments Update the entries in the table
-     * 'product'
+     * 'book'
      *
      * @param query
      * @param params

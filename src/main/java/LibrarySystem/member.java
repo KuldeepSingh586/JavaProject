@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.stream.JsonParser;
 import javax.ws.rs.Consumes;
@@ -68,8 +67,8 @@ public class member {
 
     /**
      * doPost Method takes one parameter of type String. Used to Insert the
-     * values into Product table. get the name, address, amount by using
-     * HashMap call doUpdate Method
+     * values into Product table. get the name, address, amount by using HashMap
+     * call doUpdate Method
      *
      * @param strValue
      */
@@ -103,16 +102,13 @@ public class member {
         String getDateIssue = map.get("issuedate");
         String getDateDeadline = map.get("deadlinedate");
         String getAmount = map.get("amount");
-        System.out.print(getName + getAddress+ getDateIssue+ getDateDeadline);
-       // doUpdate("INSERT INTO members (name, address, issuedate, deadlinedate, amount) VALUES (?, ?, ? ,? , ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
-        doUpdate("INSERT INTO  `members` (  `name` ,  `address` ,  `issuedate` ,  `deadlinedate` ,  `amount` )  VALUES (   ?,  ?,  ?,  ?, ? )",getName,getAddress,getDateIssue,getDateDeadline,getAmount);
+        doUpdate("INSERT INTO  `members` (  `name` ,  `address` ,  `issuedate` ,  `deadlinedate` ,  `amount` )  VALUES (   ?,  ?,  ?,  ?, ? )", getName, getAddress, getDateIssue, getDateDeadline, getAmount);
 
     }
 
     /**
      * doPut Method takes two parameters of type string Used to Insert the
-     * values into Product table. get the name, address, amount by using
-     * HashMap
+     * values into Product table. get the name, address, amount by using HashMap
      *
      * @param id
      * @param strValue
@@ -147,13 +143,13 @@ public class member {
         String getDateIssue = map.get("issuedate");
         String getDateDeadline = map.get("deadlinedate");
         String getAmount = map.get("amount");
-        doUpdate("update members set id = ?, name = ?, address = ?, issueDate = ?, deadlinedate = ?, amount=? where id = ?", id, getName, getAddress, getDateIssue, getDateDeadline, getAmount, id);
+        doUpdate("update members set id = ?, name = ?, address = ?, issuedate = ?, deadlinedate = ?, amount=? where id = ?", id, getName, getAddress, getDateIssue, getDateDeadline, getAmount, id);
     }
 
     /**
      * doDelete takes one parameter of type String. Used to delete the values
-     * into Product table. get the name, address, amount by using Simple
-     * Json Library
+     * into Product table. get the name, address, amount by using Simple Json
+     * Library
      *
      * @param id
      * @param strValue
@@ -167,9 +163,8 @@ public class member {
 
     /**
      * resultMethod accepts two arguments It executes the Query get ProductID,
-     * name, address, amount. Used JSON object model and provides methods
-     * to add name/value pairs to the object model and to return the resulting
-     * object
+     * name, address, amount. Used JSON object model and provides methods to add
+     * name/value pairs to the object model and to return the resulting object
      *
      * @param query
      * @param params
