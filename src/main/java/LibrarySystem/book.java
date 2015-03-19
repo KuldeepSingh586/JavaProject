@@ -168,7 +168,7 @@ public class book {
         String getarrivaldate = map.get("arrivaldate");
         String getQuantity = map.get("quantity");
         String getlocation = map.get("location_rack");
-        doUpdate("update product set id = ?, name = ?, bookcode = ?,author=?, arrivaldate=?, quantity = ?,location_rack=?  where id = ?"
+        doUpdate("update book set id = ?, name = ?, bookcode = ?,author=?, arrivaldate=?, quantity = ?,location_rack=?  where id = ?"
                 , id, getName, getbookcode,getauthor, getQuantity,getlocation, id);
     }
     /**
