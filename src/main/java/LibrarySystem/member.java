@@ -45,7 +45,7 @@ public class member {
     @Produces("application/json")
     public String doGet() {
 
-        String result = resultMethod("SELECT * FROM member");
+        String result = resultMethod("SELECT * FROM members");
         return result;
 
     }
@@ -61,7 +61,7 @@ public class member {
     @Path("{id}")
     @Produces("application/json")
     public String doGet(@PathParam("id") String id) {
-        String result = resultMethod("SELECT * FROM member where member_id=?", id);
+        String result = resultMethod("SELECT * FROM members where id=?", id);
         return result;
 
     }
@@ -100,11 +100,11 @@ public class member {
         System.out.println(map);
         String getName = map.get("name");
         String getAddess = map.get("address");
-        String getDateIssue = map.get("issueDate");
-        String getDateDeadline = map.get("deadlineDate");
+        String getDateIssue = map.get("issuedate");
+        String getDateDeadline = map.get("deadlinedate");
         String getAmount = map.get("amount");
        // System.out.print(getName + getAddess+ getDateIssue+ getDateDeadline);
-        doUpdate("INSERT INTO member (name, address, issueDate, deadlineDate, amount) VALUES (?, ?, ? ,? , ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
+        doUpdate("INSERT INTO members (name, address, issuedate, deadlinedate, amount) VALUES (?, ?, ? ,? , ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
      
 
     }
@@ -147,7 +147,7 @@ public class member {
         String getDateIssue = map.get("issueDate");
         String getDateDeadline = map.get("deadlineDate");
         String getAmount = map.get("amount");
-        doUpdate("update member set member_id = ?, name = ?, address = ?, issueDate = ?, deadlineDate = ?, amount=? where member_id = ?", id, getName, getAddress, getDateIssue, getDateDeadline, getAmount, id);
+        doUpdate("update members set id = ?, name = ?, address = ?, issueDate = ?, deadlinedate = ?, amount=? where member_id = ?", id, getName, getAddress, getDateIssue, getDateDeadline, getAmount, id);
     }
 
     /**
@@ -162,7 +162,7 @@ public class member {
     @Path("{id}")
     @Consumes("application/json")
     public void doDelete(@PathParam("id") String id, String strValue) {
-        doUpdate("DELETE FROM member WHERE `member_id`=?", id);
+        doUpdate("DELETE FROM member WHERE `id`=?", id);
     }
 
     /**
@@ -187,11 +187,11 @@ public class member {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 JsonObjectBuilder json = Json.createObjectBuilder()
-                        .add("member id", rs.getInt("member_id"))
+                        .add("member id", rs.getInt("id"))
                         .add("name", rs.getString("name"))
                         .add("address", rs.getString("address"))
-                        .add("date of Issue", rs.getString("issueDate"))
-                        .add("date of DeadLine", rs.getString("deadlineDate"))
+                        .add("date of Issue", rs.getString("issuedate"))
+                        .add("date of DeadLine", rs.getString("deadlinedate"))
                         .add("amount", rs.getInt("amount"));
 
                 jsonArrayObj.add(json);
