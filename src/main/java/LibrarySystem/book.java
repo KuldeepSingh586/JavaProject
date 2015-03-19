@@ -21,6 +21,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -128,7 +129,48 @@ public class book {
         strJson = jsonArrayObj.build().toString();
         return strJson;
     }
+      /**
+     * doPut Method takes two parameters of type string Used to Insert the
+     * values into Product table. get the name, description, quantity by using
+     * HashMap
+     *
+     * @param id
+     * @param strValue
+     */
+    @PUT
+    @Path("{id}")
+    @Consumes("application/json")
+    public void doPut(@PathParam("id") String id, String strValue) {
+        JsonParser jsonParserObj = Json.createParser(new StringReader(strValue));
+        Map<String, String> map = new HashMap<>();
+        String name = "", value;
+        while (jsonParserObj.hasNext()) {
+            JsonParser.Event event = jsonParserObj.next();
+            switch (event) {
+                case KEY_NAME:
+                    name = jsonParserObj.getString();
+                    break;
+                case VALUE_STRING:
+                    value = jsonParserObj.getString();
+                    map.put(name, value);
+                    break;
+                case VALUE_NUMBER:
+                    value = Integer.toString(jsonParserObj.getInt());
+                    map.put(name, value);
+                    break;
+            }
 
+        }
+        System.out.println(map);
+         String getName = map.get("name");
+        String getbookcode = map.get("bookcode");
+        String getauthor = map.get("author");
+        String getarrivaldate = map.get("arrivaldate");
+        String getQuantity = map.get("quantity");
+        String getlocation = map.get("location_rack");
+        doUpdate("update product set id = ?, name = ?, bookcode = ?,author=?, arrivaldate=?, quantity = ?,location_rack=?  where id = ?"
+                , id, getName, getbookcode,getauthor, getQuantity,getlocation, id);
+    }
     /**
      * doDelete takes one parameter of type String. Used to delete the values
      * into Product table. get the name, address, amount by using Simple Json
