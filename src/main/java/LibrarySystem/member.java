@@ -103,9 +103,8 @@ public class member {
         String getDateIssue = map.get("issueDate");
         String getDateDeadline = map.get("deadlineDate");
         String getAmount = map.get("amount");
-        System.out.print(getName + getAddess+ getDateIssue+ getDateDeadline);
-        doUpdate("INSERT INTO member (name, address, issueDate, deadlineDate, amount) VALUES "
-                + "(?, ?, ? ,? , ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
+       // System.out.print(getName + getAddess+ getDateIssue+ getDateDeadline);
+        doUpdate("INSERT INTO member (name, address, issueDate, deadlineDate, amount) VALUES (?, ?, ? ,? , ?)", getName, getAddess, getDateIssue, getDateDeadline, getAmount);
      
 
     }
@@ -148,7 +147,7 @@ public class member {
         String getDateIssue = map.get("issueDate");
         String getDateDeadline = map.get("deadlineDate");
         String getAmount = map.get("amount");
-        doUpdate("update product set member_id = ?, name = ?, address = ?, issueDate = ?, deadlineDate = ?, amount=? where member_id = ?", id, getName, getAddress, getDateIssue, getDateDeadline, getAmount, id);
+        doUpdate("update member set member_id = ?, name = ?, address = ?, issueDate = ?, deadlineDate = ?, amount=? where member_id = ?", id, getName, getAddress, getDateIssue, getDateDeadline, getAmount, id);
     }
 
     /**
