@@ -169,7 +169,7 @@ public class book {
         String getQuantity = map.get("quantity");
         String getlocation = map.get("location_rack");
         doUpdate("update book set id = ?, name = ?, bookcode = ?,author=?, arrivaldate=?, quantity = ?,location_rack=?  where id = ?"
-                , id, getName, getbookcode,getauthor, getQuantity,getlocation, id);
+                , id, getName, getbookcode,getauthor,getarrivaldate, getQuantity,getlocation, id);
     }
     /**
      * doDelete takes one parameter of type String. Used to delete the values
