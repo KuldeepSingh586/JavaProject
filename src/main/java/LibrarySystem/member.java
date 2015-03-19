@@ -35,8 +35,8 @@ import javax.ws.rs.Produces;
 public class member {
 
     /**
-     * doGet method select all attribute from product table. call resultMethod()
-     * pass all product table data in resultMethod(). store all table data in
+     * doGet method select all attribute from members table. call resultMethod()
+     * pass all members table data in resultMethod(). store all table data in
      * String result variable
      *
      * @return result
@@ -51,7 +51,7 @@ public class member {
     }
 
     /**
-     * doGet Method takes one parameter of type of string pass all product table
+     * doGet Method takes one parameter of type of string pass all members table
      * data in resultMethod(). store all table data in String result variable
      *
      * @param id
@@ -68,7 +68,7 @@ public class member {
 
     /**
      * doPost Method takes one parameter of type String. Used to Insert the
-     * values into Product table. get the name, description, quantity by using
+     * values into Product table. get the name, address, amount by using
      * HashMap call doUpdate Method
      *
      * @param strValue
@@ -111,7 +111,7 @@ public class member {
 
     /**
      * doPut Method takes two parameters of type string Used to Insert the
-     * values into Product table. get the name, description, quantity by using
+     * values into Product table. get the name, address, amount by using
      * HashMap
      *
      * @param id
@@ -152,7 +152,7 @@ public class member {
 
     /**
      * doDelete takes one parameter of type String. Used to delete the values
-     * into Product table. get the name, description, quantity by using Simple
+     * into Product table. get the name, address, amount by using Simple
      * Json Library
      *
      * @param id
@@ -167,7 +167,7 @@ public class member {
 
     /**
      * resultMethod accepts two arguments It executes the Query get ProductID,
-     * name, description, quantity. Used JSON object model and provides methods
+     * name, address, amount. Used JSON object model and provides methods
      * to add name/value pairs to the object model and to return the resulting
      * object
      *
@@ -206,7 +206,7 @@ public class member {
 
     /**
      * doUpdate Method accepts two arguments Update the entries in the table
-     * 'product'
+     * 'members'
      *
      * @param query
      * @param params

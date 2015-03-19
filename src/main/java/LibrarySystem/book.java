@@ -61,10 +61,12 @@ public class book {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 JsonObject json = Json.createObjectBuilder()
-                        .add("ProductID", rs.getInt("ProductID"))
                         .add("name", rs.getString("name"))
-                        .add("description", rs.getString("description"))
-                        .add("quantity", rs.getInt("quantity")).build();
+                        .add("bookcode", rs.getString("bookcode"))
+                        .add("author", rs.getString("author"))
+                        .add("arrivaldate", rs.getInt("arrivaldate"))
+                         .add("quantity", rs.getInt("quantity"))
+                        .add("location_rack", rs.getInt("location_rack")).build();
 
                 jsonArrayObj.add(json);
             }
