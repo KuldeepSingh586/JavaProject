@@ -18,9 +18,11 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.stream.JsonParser;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
@@ -29,7 +31,7 @@ import javax.ws.rs.Produces;
  */
 @Path("book")
 public class book {
-    
+
     /**
      * doGet method select all attribute from product table. call resultMethod()
      * pass all product table data in resultMethod(). store all table data in
@@ -40,10 +42,11 @@ public class book {
     @GET
     @Produces("application/json")
     public String doGet() {
-        String books=resultMethod("SELECT * FROM book");
+        String books = resultMethod("SELECT * FROM book");
 
         return books;
     }
+
     /**
      * doPost Method takes one parameter of type String. Used to Insert the
      * values into Product table. get the name, description, quantity by using
@@ -78,14 +81,15 @@ public class book {
         String getName = map.get("name");
         String getbookcode = map.get("bookcode");
         String getauthor = map.get("author");
-        String getarrivaldate= map.get("arrivaldate");
+        String getarrivaldate = map.get("arrivaldate");
         String getQuantity = map.get("quantity");
         String getlocation = map.get("location_rack");
         doUpdate("INSERT INTO book (name, bookcode, author,arrivaldate, quantity, location_rack ) "
-                + "VALUES (?, ?, ?, ?, ?, ?)", getName, getbookcode,getauthor,getarrivaldate, getQuantity,getlocation);
+                + "VALUES (?, ?, ?, ?, ?, ?)", getName, getbookcode, getauthor, getarrivaldate, getQuantity, getlocation);
 
     }
-     /**
+
+    /**
      * resultMethod accepts two arguments It executes the Query get ProductID,
      * name, description, quantity. Used JSON object model and provides methods
      * to add name/value pairs to the object model and to return the resulting
@@ -111,8 +115,9 @@ public class book {
                         .add("bookcode", rs.getString("bookcode"))
                         .add("author", rs.getString("author"))
                         .add("arrivaldate", rs.getString("arrivaldate"))
-                         .add("quantity", rs.getInt("quantity"))
-                        .add("location_rack", rs.getString("location_rack")).build();
+                        .add("quantity", rs.getInt("quantity"))
+                        .add("location_rack", rs.getString("location_rack"))
+                        .add("id", rs.getString("id")).build();
 
                 jsonArrayObj.add(json);
             }
@@ -124,7 +129,22 @@ public class book {
         return strJson;
     }
 
-      /**
+    /**
+     * doDelete takes one parameter of type String. Used to delete the values
+     * into Product table. get the name, address, amount by using Simple Json
+     * Library
+     *
+     * @param id
+     * @param strValue
+     */
+    @DELETE
+    @Path("{id}")
+    @Consumes("application/json")
+    public void doDelete(@PathParam("id") String id, String strValue) {
+        doUpdate("DELETE FROM book WHERE `id`=?", id);
+    }
+
+    /**
      * doUpdate Method accepts two arguments Update the entries in the table
      * 'product'
      *
