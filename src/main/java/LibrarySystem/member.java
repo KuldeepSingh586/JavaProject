@@ -144,8 +144,8 @@ public class member {
         System.out.println(map);
         String getName = map.get("name");
         String getAddress = map.get("address");
-        String getDateIssue = map.get("issueDate");
-        String getDateDeadline = map.get("deadlineDate");
+        String getDateIssue = map.get("issuedate");
+        String getDateDeadline = map.get("deadlinedate");
         String getAmount = map.get("amount");
         doUpdate("update members set id = ?, name = ?, address = ?, issueDate = ?, deadlinedate = ?, amount=? where member_id = ?", id, getName, getAddress, getDateIssue, getDateDeadline, getAmount, id);
     }
@@ -162,7 +162,7 @@ public class member {
     @Path("{id}")
     @Consumes("application/json")
     public void doDelete(@PathParam("id") String id, String strValue) {
-        doUpdate("DELETE FROM member WHERE `id`=?", id);
+        doUpdate("DELETE FROM members WHERE `id`=?", id);
     }
 
     /**
