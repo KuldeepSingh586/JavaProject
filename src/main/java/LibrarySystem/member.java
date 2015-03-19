@@ -147,7 +147,7 @@ public class member {
         String getDateIssue = map.get("issuedate");
         String getDateDeadline = map.get("deadlinedate");
         String getAmount = map.get("amount");
-        doUpdate("update members set id = ?, name = ?, address = ?, issueDate = ?, deadlinedate = ?, amount=? where member_id = ?", id, getName, getAddress, getDateIssue, getDateDeadline, getAmount, id);
+        doUpdate("update members set id = ?, name = ?, address = ?, issueDate = ?, deadlinedate = ?, amount=? where id = ?", id, getName, getAddress, getDateIssue, getDateDeadline, getAmount, id);
     }
 
     /**
