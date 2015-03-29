@@ -22,6 +22,9 @@ and open the template in the editor.
                     success: function(data) {
                         alert(data[0].toString());
                         console.log(data); 
+                        $.each(data, function(index, item) {
+                            alert(item.name);
+                        });
                     }
                 });
                
