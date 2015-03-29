@@ -38,7 +38,7 @@ public class Login {
         String name = rs.getString("username");
         String passwordDb = rs.getString("password");
         if (name.equals(username) && passwordDb.equals(password)) {
-    
+            
             return Response.ok().build();
             
         } else {

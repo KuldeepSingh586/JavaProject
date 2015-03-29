@@ -10,16 +10,22 @@
         <script>
             $(document).ready(function() {
                $('#loginButton').click(function() {
-                   $.post('rs/user/add', 
-                   {username: $('#username').val(),
-                       password: $('#password').val()},
-                   function(data) {
-                       // Some sort of Redirect
-                       alert(username);
-                       window.location.href='http://librarymgmtsys-javaprojkuldeep.rhcloud.com/welcome.html';
-                       
-                   })
-               }) 
+                   username: $('#username').val();
+                   password: $('#password').val();
+                   if(username==="" || password==="") {
+                       alert("Please fill required field");
+                   } 
+                   else {
+                       $.ajax({
+                           type: "POST",
+                           url:"rs/user/add",
+                           data:"username="+username+"&password"=+password,
+                           success: function(data) {
+                               alert(data);
+                           }
+                       });
+                   }
+            })
             });
         </script>
 
