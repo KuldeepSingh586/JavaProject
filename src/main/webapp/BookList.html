@@ -17,7 +17,7 @@ and open the template in the editor.
                     type: 'POST',
                     url: 'http://librarymgmtsys-javaprojkuldeep.rhcloud.com/rs/book',
                    async: false,
-                    dataType: 'json',
+                    contentType: 'application/json',
                     success: function(data) {
                         console.log(data);
                         var jsonObj=$.parseJSON(data);
