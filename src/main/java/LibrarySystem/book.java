@@ -42,6 +42,7 @@ public class book {
      */
     @GET
     @Produces("application/json")
+    @Path("/list")
     public String doGet() {
         String books = resultMethod("SELECT * FROM book");
 

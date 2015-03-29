@@ -12,13 +12,17 @@ and open the template in the editor.
         <script src="http://code.jquery.com/jquery.min.js"></script>
         <script>
             $(document).ready(function() {
+                 
                 var i;
                 $.ajax({
-                    type: 'POST',
-                    url: 'http://librarymgmtsys-javaprojkuldeep.rhcloud.com/rs/book',
-                   async: false,
+                    type: 'GET',
+                    url: 'rs/book/list',
+                    
+                    dataType:'json',
                     contentType: 'application/json',
+                    async: true,
                     success: function(data) {
+                        alert("Come Here");
                         console.log(data);
                         var jsonObj=$.parseJSON(data);
                         for( i in jsonObj) {
