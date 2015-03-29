@@ -24,6 +24,7 @@ and open the template in the editor.
                         console.log(data); 
                         $.each(data, function(index, item) {
                             alert(item.name);
+                            $("#.name").html("<tr><td>"+item.name+"</td></tr>");
                         });
                     }
                 });
@@ -32,6 +33,7 @@ and open the template in the editor.
         </script>
     </head>
     <body>
+        <div id="name">
         <table border="1">
             <tr>
                 <th>Name</th>
@@ -41,15 +43,9 @@ and open the template in the editor.
                 <th>Quantity</th>
                 <th>Location</th>
             <tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>    
+            
 
-        </table>    
+        </table>
+        </div>     
     </body>
 </html>
