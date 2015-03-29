@@ -4,52 +4,56 @@
         <meta charset="utf-8">
         <title>Library Management System</title>
 	<!-- jQuery library (served from Google) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<!-- bxSlider Javascript file -->
-<script src="jquery/jquery.bxslider.min.js"></script>
-<script src="jquery/jquery.bxslider.js"></script>
-<!-- bxSlider CSS file -->
-<link href="jquery/jquery.bxslider.css" rel="stylesheet" />
-	 <script>
-$(document).ready(function(){
-  $('.bxslider').bxSlider();
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <!-- bxSlider Javascript file -->
+        <script src="jquery/jquery.bxslider.min.js"></script>
+        <script src="jquery/jquery.bxslider.js"></script>
+        <!-- bxSlider CSS file -->
+        <link href="jquery/jquery.bxslider.css" rel="stylesheet" />
+        <script>
+                $(document).ready(function(){
+  $('.bxslider').bxSlider({
+  auto: true,
+  autoControls: true,
+  slideWidth: 1000
 });
-	 </script>
-	 <style>
-#list{
-list-style-type:none;
-text-align:center;
-border:2px solid black;
-background: linear-gradient(to right, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 50%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);padding-top:1em;
-padding-bottom:1em;
-}
-li{
-margin-left:1em;
-display:inline;
-font-size:150%;
-}
-	 </style>
+});
+        </script>
+                    <style>
+                       #list{
+                       list-style-type:none;
+                       text-align:center;
+                       border:2px solid black;
+                       background:linear-gradient(to right, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 50%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%);padding-top:1em;
+                       padding-bottom:1em;
+                       }
+                       li{
+                       margin-left:1em;
+                       display:inline;
+                       font-size:150%;
+                       }
+                    </style>
 	</head>
 
 <body>
-<nav>
-<ul id="list">
-<a href=""><li>Members</li></a>
-<a href=""><li>Add Member</li></a>
-<a href=""><li>Books List</li></a>
-<a href=""><li>Add Books</li></a>
-<a href=""><li>Borrow Book</li></a>
-<a href=""><li>Return Book</li></a>
-<a href=""><li>Logout</li></a>
-</ul>
-</nav>
-<section>
-<ul class="bxslider">
-  <li><img src="jquery/images/image.jpg" /></li>
-  <li><img src="jquery/images/pic2.jpg" /></li>
-  <li><img src="jquery/images/pic3.jpg" /></li>
- 
-</ul>
-</section>
+            <nav>
+                <ul id="list">
+                   <li> <a href="Member.html">Members</a></li>
+                   <li> <a href="AddMember.html">Add Member</a></li>
+                   <li> <a href="BookList.html">Books List</a></li>
+                    <li><a href="AddBook.html">Add Books</a></li>
+                   <li> <a href="BorrowBook">Borrow Book</a></li>
+                   <li> <a href="ReturnBook">Return Book</a></li>
+                   <li>  <a href="Logout">Logout</a></li>
+                </ul>
+            </nav>
+            <section>
+                <h1 align="center">Welcome to Library Management System</h1><br><br>
+                <ul class="bxslider">
+                  <li><img src="jquery/images/image.jpg" alt="pic1" /></li>
+                  <li><img src="jquery/images/pic2.png" alt="pic2"/></li>
+                  <li><img src="jquery/images/pic3.png" alt="pic3"/></li>
+                </ul>
+            </section>
 </body>
 </html>
