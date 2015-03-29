@@ -6,7 +6,6 @@
 package LibrarySystem;
 
 import static databaseCredentials.database.getConnection;
-import java.net.URI;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +14,6 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 /**
@@ -27,7 +25,7 @@ public class Login {
 
     @POST
     @Path("/add")
-    public URI addUser(@FormParam("username") String username,
+    public Response addUser(@FormParam("username") String username,
             @FormParam("password") String password) throws SQLException {
         String sql = "Select * from login WHERE username = ? AND password = ?";
 
@@ -39,12 +37,12 @@ public class Login {
         rs.next();
         String name = rs.getString("username");
         String passwordDb = rs.getString("password");
-        if (name.equals(username) && passwordDb.equals(password)) 
+        if (name.equals(username) && passwordDb.equals(password)) {
     
-        {   
-             return UriBuilder.fromUri("librarymgmtsys-javaprojkuldeep.rhcloud.com/welcome.html").build();
-        // return Response.ok().build();
+            return Response.ok().build();
+        } else {
+            return Response.status(500).build();
         }
-        return UriBuilder.fromUri("librarymgmtsys-javaprojkuldeep.rhcloud.com").uri("/welcome.html").build();
+
     }
 }
