@@ -11,39 +11,38 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="http://code.jquery.com/jquery.min.js"></script>
         <script>
-            $(document).ready(function() { 
+            $(document).ready(function() {
                 var i;
                 $.ajax({
                     type: 'GET',
                     url: 'rs/book/list',
-                    dataType:'json',
+                    dataType: 'json',
                     contentType: 'application/json',
-                    
                     success: function(data) {
                         alert(data[0].toString());
-                        console.log(data); 
+                        console.log(data);
                         $.each(data, function(index, item) {
                             alert(item.name);
-                            $("#name").append("<td>"+item.name+"</td>");
+                            $("#name").append("<td>" + item.name + "</td>");
                         });
                     }
                 });
-               
+
             });
         </script>
     </head>
     <body>
         <div id="name">
-        <table border="1">
-            <tr>
-                <th>Name</th>
-                <th>Book Code</th>
-                <th>Author</th>
-                <th>Arrival Date</th>
-                <th>Quantity</th>
-                <th>Location</th>
-            <tr>
-        </table>
+            <table border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Book Code</th>
+                    <th>Author</th>
+                    <th>Arrival Date</th>
+                    <th>Quantity</th>
+                    <th>Location</th>
+                <tr>
+            </table>
         </div>     
     </body>
 </html>
