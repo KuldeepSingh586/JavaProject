@@ -16,14 +16,13 @@ and open the template in the editor.
                 $.ajax({
                     type: 'GET',
                     url: 'rs/book/list',
-                    
                     dataType:'json',
                     contentType: 'application/json',
                     
                     success: function(data) {
-                        alert(data);
+                        alert(data[0]);
                         console.log(data);
-                        var jsonObj=$.parseJSON(data);
+                       // var jsonObj=$.parseJSON(data);
                         for( i in jsonObj) {
                             alert(jsonObj[i]);
                         }
