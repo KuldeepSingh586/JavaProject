@@ -21,7 +21,7 @@ and open the template in the editor.
                     contentType: 'application/json',
                     
                     success: function(data) {
-                        alert("Come changed here");
+                        alert(data);
                         console.log(data);
                         var jsonObj=$.parseJSON(data);
                         for( i in jsonObj) {
