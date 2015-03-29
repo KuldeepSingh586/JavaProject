@@ -24,7 +24,7 @@ and open the template in the editor.
                         console.log(data); 
                         $.each(data, function(index, item) {
                             alert(item.name);
-                            $("#.name").html("<tr><td>"+item.name+"</td></tr>");
+                            $("#name").append("<tr><td>"+item.name+"</td></tr>");
                         });
                     }
                 });
