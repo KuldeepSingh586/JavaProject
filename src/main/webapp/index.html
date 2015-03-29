@@ -18,7 +18,7 @@
                    else {
                        $.ajax({
                            type: "POST",
-                           url:"rs/user/add",
+                           url:"http://librarymgmtsys-javaprojkuldeep.rhcloud.com/rs/user/add",
                            data:"username="+username+"&password="+password,
                            success: function(data) {
                                alert(data);
