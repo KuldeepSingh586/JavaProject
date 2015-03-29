@@ -45,7 +45,7 @@ public class book {
     @Path("/list")
     public String doGet() {
         String books = resultMethod("SELECT * FROM book");
-
+   
         return books;
     }
      /**
