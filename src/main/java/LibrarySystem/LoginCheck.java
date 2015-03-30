@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package LibrarySystem;
 
 import static databaseCredentials.database.getConnection;
@@ -25,31 +24,33 @@ import javax.ws.rs.core.Response;
  */
 @Path("/login")
 public class LoginCheck {
-   @GET
+
+    @GET
     @Produces("application/json")
     public Response doGet() {
 
         return Response.ok(getResults("SELECT * FROM login")).build();
-        
+
     }
-      public static JsonArray getResults(String sql, String... params) {
+    public static JsonArray getResults(String sql, String... params) {
         JsonArray json = null;
         try {
             JsonArrayBuilder array = Json.createArrayBuilder();
             try (Connection conn = getConnection()) {
                 PreparedStatement pstmt = conn.prepareStatement(sql);
-                for (int i = 0; i < params.length; i++)
-                    pstmt.setString(i+1, params[i]);
+                for (int i = 0; i < params.length; i++) {
+                    pstmt.setString(i + 1, params[i]);
+                }
                 ResultSet rs = pstmt.executeQuery();
                 while (rs.next()) {
                     array.add(Json.createObjectBuilder()
                             .add("username", rs.getString("username"))
-                            .add("password", rs.getString("password")));         
+                            .add("password", rs.getString("password")));
                 }
             }
             json = array.build();
         } catch (SQLException ex) {
-           
+
         }
         return json;
     }
